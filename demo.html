@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="3D Goddess">
+  <meta name="Description" content="3D Goddess">
+  <title>3D Goddess</title>
+ </head>
+ <style>
+	*{
+		margin:0;
+		padding:0;
+	 }
+	body{
+		background:#000;
+		overflow:hidden;/*超出隐藏*/
+	 }
+	.heart{
+		position:absolute;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+		width:100px;
+		height:160px;
+		margin:auto;
+		transform-style:preserve-3d;/*3D空间*/
+		animation:rot 15s linear infinite;/*CSS3自定义动画：名称，时间，速度曲线 无限重复*/
+	}
+	@keyframes rot{
+		from{transform:rotateX(0deg) rotateY(0deg)}
+		to{transform:rotateX(360deg) rotateY(360deg)}
+	}
+	.rib{
+		position:absolute;
+		width:100px;
+		height:160px;
+		border:solid #ff99ff;
+		border-width:2px 2px 0 0;
+		border-radius:50% 50% 0/40% 50% 0;/*水平方向、竖直方向，顺时针*/
+	}
+	/*.rib:nth-child(1){
+		transform:rotateY(10deg) rotateZ(45deg) translateX(30px);
+	}/*3D变换：y旋转，Z旋转 ，X位移*/
+	.cube{
+		position:absolute;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		margin:auto;
+		width:60px;
+		height:60px;
+		transform-style:preserve-3d;
+		transform:translateZ(23px);
+	}
+	.cube div{
+		position:absolute;
+		width:60px;
+		height:60px;
+	}
+	.cube div:nth-child(1){
+		left:0;
+		top:-60px;
+		transform-origin:bottom;
+		transform:rotateX(90deg);
+	}	
+	.cube div:nth-child(2){
+		left:0;
+		top:60px;
+		transform-origin:top;
+		transform:rotateX(-90deg);
+	}	
+	.cube div:nth-child(3){
+		left:-60px;
+		top:0;
+		transform-origin:right;
+		transform:rotateY(-90deg);
+	}	
+	.cube div:nth-child(4){
+		left:60px;
+		top:0;
+		transform-origin:left;
+		transform:rotateY(90deg);
+	}	
+	.cube div:nth-child(5){
+		left:0;
+		top:0;
+	}	
+	.cube div:nth-child(6){
+		left:0;
+		top:0;
+		transform:translateZ(-60px);
+	}	
+ </style>
+ <body>	
+	<div class="heart">
+		<div class="cube">
+			<div><img src="images/1.jpg" width=60px height=60px alt="Goddess"></div>
+			<div><img src="images/2.jpg" width=60px height=60px alt="Goddess"></div>
+			<div><img src="images/3.jpg" width=60px height=60px alt="Goddess"></div>
+			<div><img src="images/4.jpg" width=60px height=60px alt="Goddess"></div>
+			<div><img src="images/5.jpg" width=60px height=60px alt="Goddess"></div>
+			<div><img src="images/6.jpg" width=60px height=60px alt="Goddess"></div>
+		</div>
+	</div>
+	<audio autoplay="autoplay" loop="loop" preload="auto"
+            src="audio/bg.mp3">
+	</audio>
+	<script src="js/bg.js"></script>
+	<script>
+		var heart = document.getElementsByClassName("heart")[0];
+		/*var html='';
+		for (var i=0;i<36 ;i++ )
+		{
+			html +="<div class='rib' style='transform:rotateY("+10*i+"deg) rotateZ(45deg) translateX(30px)'></div>"
+		}
+		heart.innerHTML = html;*/
+		for (var i=0;i<36 ;i++ )
+		{
+			var oDiv = document.createElement("div");
+			oDiv.className = "rib";
+			oDiv.style.transform= "rotateY("+10*i+"deg) rotateZ(45deg) translateX(30px)";
+			heart.appendChild(oDiv);
+		}
+	</script>
+
+ </body>
+</html>
